@@ -8,24 +8,6 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { PaymentModal } from "@/components/features/PaymentModal"
 
 export default function PricingPage() {
-    const [loading, setLoading] = useState(false);
-
-    async function onUpgrade() {
-        setLoading(true);
-        try {
-            const res = await fetch("/api/checkout", { method: "POST" }); // Assuming no priceId maps to default for now
-            const data = await res.json();
-            if (data.url) {
-                window.location.href = data.url;
-            } else {
-                toast.error("Failed to create checkout session");
-            }
-        } catch (e) {
-            toast.error("Something went wrong");
-        } finally {
-            setLoading(false);
-        }
-    }
 
     return (
         <div className="container py-24 mx-auto px-4">

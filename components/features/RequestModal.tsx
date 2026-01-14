@@ -1,5 +1,6 @@
 "use client"
 import { useState } from "react"
+import { useDemo } from "@/components/providers/DemoContext"
 import { Button } from "@/components/ui/button"
 import {
     Dialog,
@@ -22,6 +23,8 @@ export function RequestModal({ expertId, expertName }: { expertId: string, exper
     const [aiLoading, setAiLoading] = useState(false)
     const [message, setMessage] = useState("")
 
+    const { sendRequest } = useDemo();
+
     async function onSubmit(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault()
         setLoading(true)
@@ -29,7 +32,17 @@ export function RequestModal({ expertId, expertName }: { expertId: string, exper
         // Simulate API call delay
         await new Promise(resolve => setTimeout(resolve, 1000));
 
-        toast.success("Request sent successfully! (Demo Mode)")
+        sendRequest({
+            startupId: 'user-startup',
+            startupName: 'ForschMedx',
+            mentorId: expertId,
+            mentorName: expertName,
+            title: (event.target as any).title.value,
+            message: message,
+            location: 'Mumbai' // Mock
+        });
+
+        toast.success("Request sent successfully! Check your dashboard.")
         setOpen(false)
         setLoading(false)
     }
