@@ -1,0 +1,87 @@
+
+export const MOCK_EXPERTS = [
+    {
+        id: "1",
+        name: "Dr. Ananya Sharma",
+        title: "Chief of Cardiology, Apollo Hospital",
+        specialty: "Cardiology",
+        price: "₹4,000",
+        location: "Mumbai, MH",
+        rating: 4.9,
+        verified: true,
+        image: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&q=80&w=300&h=300",
+        about: "Dr. Sharma is a leading cardiologist with over 15 years of experience in clinical trials and device validation. She has led 20+ pivotal trials.",
+        expertise: ["Heart Failure", "Interventional Cardiology", "Medical Device Trials", "Patient Safety"],
+        availability: "Mon, Wed, Fri"
+    },
+    {
+        id: "2",
+        name: "Dr. Rajesh Patel",
+        title: "Head of Clinical Research",
+        specialty: "Oncology",
+        price: "₹5,500",
+        location: "Ahmedabad, GJ",
+        rating: 4.8,
+        verified: true,
+        image: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&q=80&w=300&h=300",
+        about: "Dr. Patel specializes in oncology research and has extensive experience with regulatory pathways for new cancer therapies.",
+        expertise: ["Oncology", "Immuno-oncology", "Regulatory Affairs", "Phase I-III Trials"],
+        availability: "Tue, Thu"
+    },
+    {
+        id: "3",
+        name: "Meera Iyer, RN",
+        title: "ICU Manager",
+        specialty: "Critical Care",
+        price: "₹2,500",
+        location: "Chennai, TN",
+        rating: 4.7,
+        verified: false,
+        image: "https://images.unsplash.com/photo-1582750433449-d22b1c74caf8?auto=format&fit=crop&q=80&w=300&h=300",
+        about: "Meera manages a high-volume ICU and advises MedTech startups on workflow integration and nurse usability.",
+        expertise: ["Critical Care", "Workflow Optimization", "Nurse Training", "Patient Monitoring"],
+        availability: "Weekends"
+    },
+    {
+        id: "4",
+        name: "Dr. Vikram Singh",
+        title: "Medical Device Consultant",
+        specialty: "Regulatory",
+        price: "₹6,000",
+        location: "Delhi, NCR",
+        rating: 5.0,
+        verified: true,
+        image: "https://images.unsplash.com/photo-1537368910025-700350fe46c7?auto=format&fit=crop&q=80&w=300&h=300",
+        about: "Former CDSCO advisor helping international and domestic companies navigate Indian medical device regulations.",
+        expertise: ["CDSCO Regulations", "ISO 13485", "Market Entry Strategy", "Post-Market Surveillance"],
+        availability: "Mon-Fri"
+    },
+    {
+        id: "5",
+        name: "Dr. Sanjay Gupta",
+        title: "Neurologist",
+        specialty: "Neurology",
+        price: "₹4,500",
+        location: "Bangalore, KA",
+        rating: 4.9,
+        verified: true,
+        image: "https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&q=80&w=300&h=300",
+        about: "Specialist in neuro-degenerative diseases, actively looking for innovative digital biomarkers.",
+        expertise: ["Neurology", "Digital Health", "Alzheimer's Research", "EEG Analysis"],
+        availability: "Wed, Thu"
+    },
+    {
+        id: "user-mentor", // Abhishek Sir
+        name: "Abhishek Sir",
+        title: "Senior Medical Advisor",
+        specialty: "Oncology",
+        price: "₹5,000",
+        location: "Mumbai, MH",
+        rating: 5.0,
+        verified: true,
+        image: "https://github.com/shadcn.png",
+        about: "Senior advisor at Tata Memorial with a focus on translational research and affordable cancer care solutions.",
+        expertise: ["Oncology", "Public Health", "Clinical Strategy", "Medical Writing"],
+        availability: "Mon-Sat"
+    },
+];
