@@ -24,16 +24,16 @@ export function ExpertCard({ expert }: { expert: Expert }) {
                     <span className="text-lg font-bold text-muted-foreground">{expert.name[0]}</span>
                 </div>
                 <div className="flex-1 min-w-0">
-                    <div className="flex justify-between items-start">
-                        <div>
-                            <h3 className="font-semibold text-lg flex items-center gap-2 truncate">
-                                {expert.name}
+                    <div className="flex justify-between items-start gap-2">
+                        <div className="flex-1 min-w-0 mr-1">
+                            <h3 className="font-semibold text-lg flex items-center gap-1.5 min-w-0">
+                                <span className="truncate">{expert.name}</span>
                                 {expert.verified && <CheckCircle className="h-4 w-4 text-blue-500 shrink-0" />}
                             </h3>
                             <p className="text-sm text-muted-foreground truncate">{expert.title}</p>
                         </div>
-                        <div className="flex items-center gap-1 text-sm font-medium shrink-0">
-                            <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
+                        <div className="flex items-center gap-1 text-sm font-medium shrink-0 bg-yellow-500/10 px-2 py-0.5 rounded text-yellow-500 mt-0.5">
+                            <Star className="h-3 w-3 fill-current" />
                             {expert.rating}
                         </div>
                     </div>

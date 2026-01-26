@@ -13,8 +13,8 @@ export default function ExplorePage() {
     const [selectedSpecialties, setSelectedSpecialties] = useState<string[]>([]);
     const [selectedPrices, setSelectedPrices] = useState<string[]>([]);
 
-    const specialties = ["Cardiology", "Oncology", "Regulatory", "Neurology", "Operations"]; // Added Operations
-    const prices = ["< ₹2,000", "₹2,000 - ₹5,000", "₹5,000+"];
+    const specialties = ["Cardiology", "Oncology", "Regulatory", "Neurology", "Operations", "Critical Care"]; // Added Critical Care
+    const prices = ["< ₹3,000", "₹3,000 - ₹5,000", "₹5,000+"];
 
     const toggleSpecialty = (s: string) => {
         if (selectedSpecialties.includes(s)) {
@@ -39,13 +39,13 @@ export default function ExplorePage() {
 
         const matchesSpecialty = selectedSpecialties.length === 0 || selectedSpecialties.includes(expert.specialty);
 
-        // Simple price filtering logic (parsing strings like "₹4,000")
+        // Robust price parsing: remove all non-digits (e.g., "₹4,000" -> 4000)
         let matchesPrice = true;
         if (selectedPrices.length > 0) {
             const priceVal = parseInt(expert.price.replace(/[^0-9]/g, ''));
             matchesPrice = selectedPrices.some(range => {
-                if (range === "< ₹2,000") return priceVal < 2000;
-                if (range === "₹2,000 - ₹5,000") return priceVal >= 2000 && priceVal <= 5000;
+                if (range === "< ₹3,000") return priceVal < 3000;
+                if (range === "₹3,000 - ₹5,000") return priceVal >= 3000 && priceVal <= 5000;
                 if (range === "₹5,000+") return priceVal > 5000;
                 return false;
             });

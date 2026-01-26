@@ -8,25 +8,33 @@ const MockAuthContext = createContext({
     isLoaded: true,
     isSignedIn: false,
     userId: null as string | null,
-    role: null as 'STARTUP' | 'MENTOR' | null,
+    role: null as 'STARTUP' | 'MENTOR' | 'ADMIN' | 'SUPER_ADMIN' | 'MENTOR_ADMIN' | 'SUPPORT' | null,
     startUpProfile: null as any,
     mentorProfile: null as any,
-    signIn: (role: 'STARTUP' | 'MENTOR') => { },
+    signIn: (role: 'STARTUP' | 'MENTOR' | 'ADMIN' | 'SUPER_ADMIN' | 'MENTOR_ADMIN' | 'SUPPORT') => { },
     signOut: () => { },
 })
 
 export function MockAuthProvider({ children }: { children: React.ReactNode }) {
     const [isSignedIn, setIsSignedIn] = useState(false)
     const [userId, setUserId] = useState<string | null>(null)
-    const [role, setRole] = useState<'STARTUP' | 'MENTOR' | null>(null)
+    const [role, setRole] = useState<'STARTUP' | 'MENTOR' | 'ADMIN' | 'SUPER_ADMIN' | 'MENTOR_ADMIN' | 'SUPPORT' | null>(null)
     const router = useRouter()
 
-    const signIn = (selectedRole: 'STARTUP' | 'MENTOR') => {
+    const signIn = (selectedRole: 'STARTUP' | 'MENTOR' | 'ADMIN' | 'SUPER_ADMIN' | 'MENTOR_ADMIN' | 'SUPPORT') => {
         setIsSignedIn(true)
-        setUserId(selectedRole === 'STARTUP' ? "user-startup" : "user-mentor")
+        setUserId(selectedRole === 'STARTUP' ? "user-startup" : selectedRole === 'MENTOR' ? "user-mentor" : `user-${selectedRole.toLowerCase()}`)
         setRole(selectedRole)
-        // Redirect to dashboard after login
-        router.push('/dashboard')
+        // Redirect logic
+        if (selectedRole === 'STARTUP' || selectedRole === 'MENTOR') {
+            router.push('/dashboard')
+        } else if (selectedRole === 'ADMIN' || selectedRole === 'SUPER_ADMIN') {
+            router.push('/admin')
+        } else if (selectedRole === 'MENTOR_ADMIN') {
+            router.push('/mentor-admin')
+        } else if (selectedRole === 'SUPPORT') {
+            router.push('/support')
+        }
     }
 
     const signOut = () => {
@@ -104,7 +112,7 @@ export const SignInButton = ({ children, mode }: { children: React.ReactNode, mo
 
 export const SignUpButton = ({ children }: { children: React.ReactNode }) => {
     const router = useRouter()
-    return <span onClick={() => router.push('/login')} className="cursor-pointer">{children}</span>
+    return <span onClick={() => router.push('/sign-up')} className="cursor-pointer">{children}</span>
 }
 
 export const UserButton = () => {

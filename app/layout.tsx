@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Manrope } from "next/font/google";
 import { ClerkProvider } from "@clerk/nextjs";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import Navbar from "@/components/Navbar";
 import { Toaster } from "@/components/ui/sonner";
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
+const manrope = Manrope({ subsets: ["latin"], variable: "--font-manrope" });
 
 export const metadata: Metadata = {
   title: "ClinConnect - Healthcare Innovation Network",
@@ -30,7 +31,7 @@ export default function RootLayout({
     <DemoProvider>
       <MockAuthProvider>
         <html lang="en" suppressHydrationWarning>
-          <body className={cn("min-h-screen bg-background font-sans antialiased", inter.variable)}>
+          <body className={cn("min-h-screen bg-background font-sans antialiased", inter.variable, manrope.variable)}>
             <ThemeProvider
               attribute="class"
               defaultTheme="system"
@@ -40,7 +41,7 @@ export default function RootLayout({
               <Navbar />
               <main>{children}</main>
               <AISidebar />
-              <Toaster />
+              <Toaster position="bottom-center" />
             </ThemeProvider>
           </body>
         </html>

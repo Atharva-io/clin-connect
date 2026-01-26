@@ -33,8 +33,8 @@ export function MentorDashboard({ profile }: { profile: any }) {
             <div className="lg:col-span-2 space-y-8">
 
                 {/* 2. Incoming Queue */}
-                <Card className="border-indigo-200 dark:border-indigo-800 shadow-md">
-                    <CardHeader className="bg-muted/10">
+                <Card>
+                    <CardHeader>
                         <div className="flex justify-between items-center">
                             <div>
                                 <CardTitle>Incoming Requests</CardTitle>
@@ -89,8 +89,8 @@ export function MentorDashboard({ profile }: { profile: any }) {
                 </Card>
 
                 {/* 2.5 Active Connections (Accepted) */}
-                <Card className="border-green-200 dark:border-green-800 shadow-sm">
-                    <CardHeader className="bg-green-50/50 dark:bg-green-950/20">
+                <Card>
+                    <CardHeader>
                         <CardTitle>Active Connections</CardTitle>
                         <CardDescription>Startups you are currently mentoring</CardDescription>
                     </CardHeader>
