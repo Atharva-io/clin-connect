@@ -2,6 +2,7 @@
 
 import React, { createContext, useContext, useState } from "react"
 import { useRouter } from "next/navigation"
+import { toast } from "sonner"
 
 // Create a mock context that mimics some Clerk functionality
 const MockAuthContext = createContext({
