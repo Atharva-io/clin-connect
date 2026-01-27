@@ -41,6 +41,7 @@ export function MockAuthProvider({ children }: { children: React.ReactNode }) {
         setIsSignedIn(false)
         setUserId(null)
         setRole(null)
+        toast.success("Signed out successfully")
         router.push('/')
     }
 

@@ -6,42 +6,45 @@ export default function Home() {
   return (
     <div className="flex flex-col min-h-screen">
       {/* Hero */}
-      <header className="relative overflow-hidden text-[#f8fbff] pb-12 bg-[#050b1b]">
-        <div className="absolute inset-0 z-0 overflow-hidden">
-          <video
-            className="absolute inset-0 w-full h-full object-cover filter saturate-[1.08] brightness-60"
-            src="/assets/Video.mp4"
-            autoPlay
-            muted
-            loop
-            playsInline
-          />
-          <span className="absolute inset-0 bg-gradient-to-b from-[#030712]/15 to-[#030712]/85 mix-blend-screen pointer-events-none"></span>
-          <span className="absolute inset-0 bg-[radial-gradient(circle_at_18%_12%,rgba(77,161,255,0.25),transparent_58%)] mix-blend-screen pointer-events-none"></span>
-          <span className="absolute inset-0 bg-[radial-gradient(circle_at_82%_8%,rgba(33,212,167,0.22),transparent_64%)] mix-blend-screen pointer-events-none"></span>
+      <header className="relative overflow-hidden pb-20 bg-background text-foreground border-b border-border">
+        <div className="absolute inset-0 z-0 select-none">
+
+          {/* Vibrant Overlay */}
+          {/* Vibrant Overlay - Visible in Dark Mode */}
+          <div className="absolute inset-0 bg-gradient-to-t from-[#020617] via-[#0f172a]/80 to-transparent dark:block hidden"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-blue-900/30 to-teal-900/30 mix-blend-overlay dark:block hidden"></div>
         </div>
 
-        <section className="relative z-10 flex flex-col items-center gap-8 pt-24 pb-16 text-center container mx-auto px-4">
-          <div className="flex flex-col items-center gap-5 max-w-4xl animate-in fade-in slide-in-from-bottom-4 duration-1000">
-            <div className="inline-flex items-center rounded-full border border-[#4aa3ff]/30 px-3 py-1 text-xs font-semibold backdrop-blur-md bg-[#4aa3ff]/10 text-[#4aa3ff] mb-2 shadow-[0_0_15px_rgba(74,163,255,0.3)]">
+        <section className="relative z-10 flex flex-col items-center gap-8 pt-32 pb-20 text-center container mx-auto px-4">
+          <div className="flex flex-col items-center gap-6 max-w-5xl animate-in fade-in slide-in-from-bottom-5 duration-1000">
+
+            {/* Pill */}
+            <div className="inline-flex items-center rounded-full border border-teal-500/30 bg-teal-500/10 px-4 py-1.5 text-sm font-medium text-teal-700 dark:text-teal-300 shadow-[0_0_20px_rgba(45,212,191,0.2)] backdrop-blur-md mb-4 hover:bg-teal-500/20 transition-colors cursor-default">
+              <span className="flex h-2 w-2 rounded-full bg-teal-600 dark:bg-teal-400 mr-2 animate-pulse"></span>
               New: AI Copilot for Introductions
             </div>
-            <h1 className="font-heading text-4xl md:text-6xl lg:text-[3.9rem] leading-[1.08] font-bold text-foreground tracking-tight">
-              Connect with Healthcare Experts <br className="hidden md:inline" />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#4aa3ff] to-[#35d3b4]">Without the Friction.</span>
+
+            {/* Headline */}
+            <h1 className="font-heading text-5xl md:text-7xl lg:text-[5rem] leading-[1.1] font-extrabold tracking-tight drop-shadow-2xl">
+              Connect with <span className="text-foreground">Healthcare Experts</span> <br className="hidden md:inline" />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-400 to-teal-400 drop-shadow-sm">
+                Without the Friction.
+              </span>
             </h1>
-            <p className="text-lg md:text-xl text-muted-foreground/90 max-w-[700px] leading-relaxed">
+
+            <p className="text-lg md:text-2xl text-muted-foreground max-w-[800px] leading-relaxed font-light drop-shadow-md">
               ClinConnect bridges the gap between health-tech startups and clinical domain experts.
               Find the right partners for validation, pilots, and advisory.
             </p>
-            <div className="flex flex-wrap justify-center gap-4 mt-4">
+
+            <div className="flex flex-wrap justify-center gap-5 mt-6">
               <Link href="/explore">
-                <Button size="lg" className="rounded-full px-8 bg-gradient-to-br from-[#35d3b4] to-[#4aa3ff] text-white border-0 shadow-[0_20px_38px_-22px_rgba(74,163,255,0.6)] hover:shadow-lg hover:scale-105 transition-all duration-200">
-                  Find Experts <ArrowRight className="ml-2 h-4 w-4" />
+                <Button size="lg" className="h-14 rounded-full px-10 text-lg font-semibold bg-gradient-to-r from-blue-600 to-teal-500 hover:from-blue-500 hover:to-teal-400 text-white shadow-[0_10px_40px_-10px_rgba(59,130,246,0.5)] hover:shadow-[0_20px_40px_-10px_rgba(59,130,246,0.6)] hover:-translate-y-1 transition-all duration-300 border border-white/10">
+                  Find Experts <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
               </Link>
               <Link href="/sign-up">
-                <Button variant="outline" size="lg" className="rounded-full px-8 bg-white/5 backdrop-blur-sm border-white/20 text-white hover:bg-white/10 hover:text-white transition-all duration-200">
+                <Button variant="outline" size="lg" className="h-14 rounded-full px-10 text-lg font-semibold bg-white/50 dark:bg-white/5 backdrop-blur-sm border-slate-200 dark:border-white/10 text-slate-900 dark:text-white hover:bg-slate-100 dark:hover:bg-white/10 hover:border-slate-300 dark:hover:border-white/20 transition-all duration-300">
                   For Clinics & Experts
                 </Button>
               </Link>
@@ -50,39 +53,42 @@ export default function Home() {
         </section>
 
         {/* Features / Value Prop */}
-        <section className="relative z-10 pb-8 animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-300" id="features">
-          <div className="absolute top-0 left-0 w-full -translate-y-1/2 pointer-events-none text-[#060e1e]/90" aria-hidden="true">
-            <svg viewBox="0 0 1440 180" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" className="w-full h-[120px] fill-current">
-              <path d="M0 120L60 108C120 96 240 72 360 66C480 60 600 72 720 78C840 84 960 84 1080 60C1200 36 1320 -12 1380 -36L1440 -60V180H1380C1320 180 1200 180 1080 180C960 180 840 180 720 180C600 180 480 180 360 180C240 180 120 180 60 180H0V120Z" />
+        <section className="relative z-10 pb-12" id="features">
+          <div className="absolute top-0 left-0 w-full -translate-y-1/2 pointer-events-none text-slate-900/50" aria-hidden="true">
+            <svg viewBox="0 0 1440 120" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" className="w-full h-[80px] fill-current">
+              <path d="M0 0h1440v120H0z" fill="transparent" /> {/* Simplified cleaning */}
             </svg>
           </div>
 
           <div className="container mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-6 relative">
             {/* Card 1 */}
-            <article className="bg-[#0f172a]/60 backdrop-blur-md border border-slate-700/30 rounded-2xl p-8 hover:-translate-y-1 transition-transform duration-300 group">
-              <span className="block w-16 h-16 mb-6 p-3 rounded-2xl bg-gradient-to-br from-[#4aa3ff]/20 to-[#35d3b4]/20 text-[#4aa3ff] group-hover:scale-110 transition-transform duration-300 shadow-[0_0_20px_rgba(74,163,255,0.15)] box-border">
+            <article className="group relative bg-card dark:bg-slate-900/60 backdrop-blur-xl border border-border rounded-3xl p-8 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_-20px_rgba(59,130,246,0.3)]">
+              <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-blue-500/5 to-teal-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              <span className="relative flex items-center justify-center w-16 h-16 mb-6 p-4 rounded-2xl bg-blue-500/10 text-blue-500 group-hover:scale-110 transition-all duration-300 shadow-inner ring-1 ring-border">
                 <Search className="w-full h-full" />
               </span>
-              <h3 className="text-xl font-bold font-heading mb-3 text-foreground">Smart Discovery</h3>
-              <p className="text-muted-foreground leading-relaxed">Search verified experts by specialty, availability, and interests. Filter by price and location.</p>
+              <h3 className="relative text-2xl font-bold font-heading mb-3 text-card-foreground transition-colors">Smart Discovery</h3>
+              <p className="relative text-muted-foreground leading-relaxed transition-colors">Search verified experts by specialty, availability, and interests. Filter by price and location.</p>
             </article>
 
             {/* Card 2 */}
-            <article className="bg-[#0f172a]/60 backdrop-blur-md border border-slate-700/30 rounded-2xl p-8 hover:-translate-y-1 transition-transform duration-300 group">
-              <span className="block w-16 h-16 mb-6 p-3 rounded-2xl bg-gradient-to-br from-[#4aa3ff]/20 to-[#35d3b4]/20 text-[#35d3b4] group-hover:scale-110 transition-transform duration-300 shadow-[0_0_20px_rgba(53,211,180,0.15)] box-border">
+            <article className="group relative bg-card dark:bg-slate-900/60 backdrop-blur-xl border border-border rounded-3xl p-8 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_-20px_rgba(20,184,166,0.3)]">
+              <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-teal-500/5 to-emerald-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              <span className="relative flex items-center justify-center w-16 h-16 mb-6 p-4 rounded-2xl bg-teal-500/10 text-teal-500 group-hover:scale-110 transition-all duration-300 shadow-inner ring-1 ring-border">
                 <ShieldCheck className="w-full h-full" />
               </span>
-              <h3 className="text-xl font-bold font-heading mb-3 text-foreground">Verified Profiles</h3>
-              <p className="text-muted-foreground leading-relaxed">Every clinic and expert is manually verified to ensure high-quality, trustworthy connections.</p>
+              <h3 className="relative text-2xl font-bold font-heading mb-3 text-card-foreground transition-colors">Verified Profiles</h3>
+              <p className="relative text-muted-foreground leading-relaxed transition-colors">Every clinic and expert is manually verified to ensure high-quality, trustworthy connections.</p>
             </article>
 
             {/* Card 3 */}
-            <article className="bg-[#0f172a]/60 backdrop-blur-md border border-slate-700/30 rounded-2xl p-8 hover:-translate-y-1 transition-transform duration-300 group">
-              <span className="block w-16 h-16 mb-6 p-3 rounded-2xl bg-gradient-to-br from-[#4aa3ff]/20 to-[#35d3b4]/20 text-[#4aa3ff] group-hover:scale-110 transition-transform duration-300 shadow-[0_0_20px_rgba(74,163,255,0.15)] box-border">
+            <article className="group relative bg-card dark:bg-slate-900/60 backdrop-blur-xl border border-border rounded-3xl p-8 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_-20px_rgba(168,85,247,0.3)]">
+              <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-blue-500/5 to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              <span className="relative flex items-center justify-center w-16 h-16 mb-6 p-4 rounded-2xl bg-indigo-500/10 text-indigo-500 group-hover:scale-110 transition-all duration-300 shadow-inner ring-1 ring-border">
                 <MessageSquare className="w-full h-full" />
               </span>
-              <h3 className="text-xl font-bold font-heading mb-3 text-foreground">Seamless Outreach</h3>
-              <p className="text-muted-foreground leading-relaxed">Direct messaging and AI-assisted introductions help you cut through the noise and get responses.</p>
+              <h3 className="relative text-2xl font-bold font-heading mb-3 text-card-foreground transition-colors">Seamless Outreach</h3>
+              <p className="relative text-muted-foreground leading-relaxed transition-colors">Direct messaging and AI-assisted introductions help you cut through the noise and get responses.</p>
             </article>
           </div>
         </section>

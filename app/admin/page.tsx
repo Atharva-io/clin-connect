@@ -9,9 +9,16 @@ import { useRouter } from "next/navigation"
 import { useEffect } from "react"
 import { toast } from "sonner"
 
+import { useState } from "react"
+
 export default function AdminDashboard() {
     const { role, signOut } = useAuth()
     const router = useRouter()
+    const [filter, setFilter] = useState('all')
+
+    const handleApprove = (name: string) => {
+        toast.success(`Verified ${name}`)
+    }
 
     useEffect(() => {
         if (role !== 'ADMIN' && role !== 'SUPER_ADMIN') {
@@ -65,9 +72,9 @@ export default function AdminDashboard() {
                         <div className="border-b border-white/10 p-4 flex items-center justify-between">
                             <h2 className="font-semibold">Recent Activity</h2>
                             <div className="flex gap-2">
-                                <Badge variant="outline" className="cursor-pointer">All</Badge>
-                                <Badge variant="outline" className="cursor-pointer text-slate-500 border-slate-700">Verifications</Badge>
-                                <Badge variant="outline" className="cursor-pointer text-slate-500 border-slate-700">Flagged</Badge>
+                                <Badge variant={filter === 'all' ? 'default' : 'outline'} className="cursor-pointer" onClick={() => setFilter('all')}>All</Badge>
+                                <Badge variant={filter === 'verifications' ? 'default' : 'outline'} className="cursor-pointer text-slate-500 border-slate-700" onClick={() => setFilter('verifications')}>Verifications</Badge>
+                                <Badge variant={filter === 'flagged' ? 'default' : 'outline'} className="cursor-pointer text-slate-500 border-slate-700" onClick={() => setFilter('flagged')}>Flagged</Badge>
                             </div>
                         </div>
                         <div className="divide-y divide-white/5">
@@ -120,14 +127,15 @@ export default function AdminDashboard() {
                     <Panel className="p-4">
                         <h3 className="font-semibold mb-4">Pending Verifications</h3>
                         <div className="space-y-3">
-                            <div className="flex justify-between items-center bg-white/5 p-2 rounded">
-                                <span className="text-sm">Dr. A. Gupta</span>
-                                <Button size="sm" className="h-7 text-xs bg-green-600 hover:bg-green-700">Approve</Button>
-                            </div>
-                            <div className="flex justify-between items-center bg-white/5 p-2 rounded">
-                                <span className="text-sm">NeuroStart</span>
-                                <Button size="sm" className="h-7 text-xs bg-green-600 hover:bg-green-700">Approve</Button>
-                            </div>
+                            {[
+                                { name: "Dr. A. Gupta", type: "Mentor" },
+                                { name: "NeuroStart", type: "Startup" }
+                            ].map((item, i) => (
+                                <div key={i} className="flex justify-between items-center bg-white/5 p-2 rounded">
+                                    <span className="text-sm">{item.name}</span>
+                                    <Button size="sm" className="h-7 text-xs bg-green-600 hover:bg-green-700" onClick={() => handleApprove(item.name)}>Approve</Button>
+                                </div>
+                            ))}
                         </div>
                     </Panel>
                 </div>

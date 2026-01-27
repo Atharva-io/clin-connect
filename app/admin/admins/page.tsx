@@ -10,9 +10,24 @@ import { useRouter } from "next/navigation"
 import { useEffect } from "react"
 import { toast } from "sonner"
 
+import {
+    Dialog,
+    DialogContent,
+    DialogDescription,
+    DialogHeader,
+    DialogTitle,
+} from "@/components/ui/dialog"
+import { useState } from "react"
+
 export default function AdminManagementPage() {
     const { role } = useAuth()
     const router = useRouter()
+    const [selectedAdmin, setSelectedAdmin] = useState<any>(null)
+
+    const handleRemove = (e: React.MouseEvent, name: string) => {
+        e.stopPropagation()
+        toast.success(`Removed admin access for ${name}`)
+    }
 
     useEffect(() => {
         if (role !== 'SUPER_ADMIN') {
@@ -49,12 +64,12 @@ export default function AdminManagementPage() {
                         </thead>
                         <tbody className="divide-y divide-white/5">
                             {[
-                                { name: "System Owner", email: "owner@clin.connect", role: "SUPER_ADMIN", scope: "Global", active: "Now" },
-                                { name: "Alex Admin", email: "alex@clin.connect", role: "ADMIN", scope: "Users, Startups", active: "2h ago" },
-                                { name: "Sarah Ops", email: "sarah@clin.connect", role: "MENTOR_ADMIN", scope: "Mentors only", active: "5h ago" },
-                                { name: "Dave Support", email: "dave@clin.connect", role: "SUPPORT", scope: "Tickets", active: "1d ago" },
+                                { name: "System Owner", email: "owner@clin.connect", role: "SUPER_ADMIN", scope: "Global", active: "Now", phone: "+1 202 555 0199" },
+                                { name: "Alex Admin", email: "alex@clin.connect", role: "ADMIN", scope: "Users, Startups", active: "2h ago", phone: "+91 98765 00001" },
+                                { name: "Sarah Ops", email: "sarah@clin.connect", role: "MENTOR_ADMIN", scope: "Mentors only", active: "5h ago", phone: "+91 98765 00002" },
+                                { name: "Dave Support", email: "dave@clin.connect", role: "SUPPORT", scope: "Tickets", active: "1d ago", phone: "+91 98765 00003" },
                             ].map((admin, i) => (
-                                <tr key={i} className="hover:bg-white/[0.02]">
+                                <tr key={i} className="hover:bg-white/[0.02] cursor-pointer" onClick={() => setSelectedAdmin(admin)}>
                                     <td className="p-4">
                                         <div className="font-medium flex items-center gap-2">
                                             <Shield className="h-3 w-3 text-slate-500" />
@@ -73,7 +88,7 @@ export default function AdminManagementPage() {
                                     <td className="p-4 text-slate-500">{admin.active}</td>
                                     <td className="p-4 text-right">
                                         {admin.role !== 'SUPER_ADMIN' && (
-                                            <Button size="icon" variant="ghost" className="h-8 w-8 text-red-500 hover:bg-red-500/10">
+                                            <Button size="icon" variant="ghost" className="h-8 w-8 text-red-500 hover:bg-red-500/10" onClick={(e) => handleRemove(e, admin.name)}>
                                                 <Trash2 className="h-4 w-4" />
                                             </Button>
                                         )}
@@ -84,6 +99,56 @@ export default function AdminManagementPage() {
                     </table>
                 </div>
             </Panel>
+
+            <Dialog open={!!selectedAdmin} onOpenChange={() => setSelectedAdmin(null)}>
+                <DialogContent>
+                    <DialogHeader>
+                        <DialogTitle>Admin Profile</DialogTitle>
+                        <DialogDescription>
+                            Security details and access logs.
+                        </DialogDescription>
+                    </DialogHeader>
+                    {selectedAdmin && (
+                        <div className="space-y-6 mt-4">
+                            <div className="flex items-center gap-4">
+                                <div className={`h-16 w-16 rounded-full flex items-center justify-center text-xl font-bold ${selectedAdmin.role === 'SUPER_ADMIN' ? 'bg-red-900/20 text-red-400' : 'bg-slate-800 text-slate-400'}`}>
+                                    {selectedAdmin.name.charAt(0)}
+                                </div>
+                                <div>
+                                    <h3 className="text-xl font-bold">{selectedAdmin.name}</h3>
+                                    <Badge variant="outline" className="mt-1">{selectedAdmin.role}</Badge>
+                                </div>
+                            </div>
+
+                            <div className="space-y-4">
+                                <div className="p-4 rounded-lg bg-slate-900 border border-slate-800">
+                                    <h4 className="text-sm font-semibold mb-3 text-slate-300">Access Scope</h4>
+                                    <p className="text-sm text-slate-400">{selectedAdmin.scope}</p>
+                                </div>
+
+                                <div className="p-4 rounded-lg bg-slate-900 border border-slate-800 divide-y divide-white/5">
+                                    <div className="flex justify-between py-2 text-sm">
+                                        <span className="text-slate-500">Email</span>
+                                        <span>{selectedAdmin.email}</span>
+                                    </div>
+                                    <div className="flex justify-between py-2 text-sm">
+                                        <span className="text-slate-500">Phone</span>
+                                        <span>{selectedAdmin.phone}</span>
+                                    </div>
+                                    <div className="flex justify-between py-2 text-sm">
+                                        <span className="text-slate-500">Last Active</span>
+                                        <span>{selectedAdmin.active}</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="flex justify-end pt-2">
+                                <Button variant="secondary" onClick={() => setSelectedAdmin(null)}>Close</Button>
+                            </div>
+                        </div>
+                    )}
+                </DialogContent>
+            </Dialog>
         </div>
     )
 }

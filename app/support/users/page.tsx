@@ -6,7 +6,23 @@ import { Badge } from "@/components/ui/badge"
 import { Input } from "@/components/ui/input"
 import { User, Mail, Phone, MapPin, Eye, ExternalLink } from "lucide-react"
 
+import {
+    Dialog,
+    DialogContent,
+    DialogDescription,
+    DialogHeader,
+    DialogTitle,
+} from "@/components/ui/dialog"
+import { useState } from "react"
+import { toast } from "sonner"
+
 export default function SupportUserLookupPage() {
+    const [viewProfile, setViewProfile] = useState(false)
+
+    const handleSuspend = () => {
+        toast.error("User Account Suspended Successfully")
+    }
+
     return (
         <div className="space-y-6">
             <div className="flex gap-4">
@@ -74,14 +90,48 @@ export default function SupportUserLookupPage() {
                 </div>
 
                 <div className="p-4 bg-white/[0.02] border-t border-white/5 flex gap-3">
-                    <Button variant="outline" className="border-slate-700 text-slate-300">
+                    <Button variant="outline" className="border-slate-700 text-slate-300" onClick={() => setViewProfile(true)}>
                         <Eye className="h-4 w-4 mr-2" /> View Full Profile
                     </Button>
-                    <Button variant="outline" className="border-red-500/30 text-red-400 hover:bg-red-500/10">
+                    <Button variant="outline" className="border-red-500/30 text-red-400 hover:bg-red-500/10" onClick={handleSuspend}>
                         Suspend Account
                     </Button>
                 </div>
             </Panel>
+
+            <Dialog open={viewProfile} onOpenChange={setViewProfile}>
+                <DialogContent className="max-w-2xl">
+                    <DialogHeader>
+                        <DialogTitle>Full User Profile</DialogTitle>
+                        <DialogDescription>Extended details for support verification.</DialogDescription>
+                    </DialogHeader>
+                    <div className="grid grid-cols-2 gap-4 mt-4 text-sm">
+                        <div className="p-3 bg-slate-900 rounded">
+                            <span className="block text-xs text-slate-500 uppercase mb-1">Legal Name</span>
+                            Deepak Kumar
+                        </div>
+                        <div className="p-3 bg-slate-900 rounded">
+                            <span className="block text-xs text-slate-500 uppercase mb-1">Company Ent.</span>
+                            Biotech Solutions Pvt Ltd
+                        </div>
+                        <div className="p-3 bg-slate-900 rounded">
+                            <span className="block text-xs text-slate-500 uppercase mb-1">Subscription</span>
+                            Pro Plan (Annual)
+                        </div>
+                        <div className="p-3 bg-slate-900 rounded">
+                            <span className="block text-xs text-slate-500 uppercase mb-1">KYC Status</span>
+                            <span className="text-green-500">Verified</span>
+                        </div>
+                        <div className="col-span-2 p-3 bg-slate-900 rounded">
+                            <span className="block text-xs text-slate-500 uppercase mb-1">Notes</span>
+                            User frequently requests GST invoices. Handle with priority.
+                        </div>
+                    </div>
+                    <div className="flex justify-end pt-4">
+                        <Button onClick={() => setViewProfile(false)}>Close</Button>
+                    </div>
+                </DialogContent>
+            </Dialog>
         </div>
     )
 }

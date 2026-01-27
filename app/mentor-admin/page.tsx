@@ -78,8 +78,8 @@ export default function MentorAdminDashboard() {
                                     <div className="flex items-center gap-3">
                                         <Badge variant="secondary" className="bg-slate-800 text-slate-300">{item.status}</Badge>
                                         <div className="flex gap-2">
-                                            <Button size="icon" variant="ghost" className="text-green-500 hover:text-green-400 hover:bg-green-500/10"><CheckCircle className="h-4 w-4" /></Button>
-                                            <Button size="icon" variant="ghost" className="text-red-500 hover:text-red-400 hover:bg-red-500/10"><XCircle className="h-4 w-4" /></Button>
+                                            <Button size="icon" variant="ghost" className="text-green-500 hover:text-green-400 hover:bg-green-500/10" onClick={() => toast.success(`Approved ${item.name}`)}><CheckCircle className="h-4 w-4" /></Button>
+                                            <Button size="icon" variant="ghost" className="text-red-500 hover:text-red-400 hover:bg-red-500/10" onClick={() => toast.info(`Rejected ${item.name}`)}><XCircle className="h-4 w-4" /></Button>
                                         </div>
                                     </div>
                                 </div>
@@ -97,7 +97,7 @@ export default function MentorAdminDashboard() {
                             <div className="p-3 bg-white/5 rounded text-sm">
                                 <div className="font-medium text-red-300">Complaint #402</div>
                                 <div className="text-xs text-slate-400 mt-1">Mentor no-show reported by Startup X.</div>
-                                <Button variant="link" className="h-auto p-0 text-xs text-blue-400 mt-2">Investigate</Button>
+                                <Button variant="link" className="h-auto p-0 text-xs text-blue-400 mt-2" onClick={() => toast.warning("Opening Investigation Case #402...")}>Investigate</Button>
                             </div>
                         </div>
                     </Panel>
